@@ -1,0 +1,14 @@
+{
+  "name": "cours1-exercice",
+  "version": "1.0.0",
+  "description": "Utiliser l’API de Deezer pour afficher dans la console les résultats de type “track” d’une recherche (titre, artiste, album et durée au format “XXmnXX”)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.2"
+  }
+}
