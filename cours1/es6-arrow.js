@@ -4,23 +4,23 @@ function getBonjourFunction(nom) {
 
 console.log(getBonjourFunction("le monde !"));
 
-var getBonjourVar = function(nom) {
-  return "Bonjour var " + nom;
+const getBonjourConst = function(nom) {
+  return "Bonjour const " + nom;
 };
 
-console.log(getBonjourVar("le monde !"));
+console.log(getBonjourConst("le monde !"));
 
-var getBonjourArrow = nom => {
+const getBonjourArrow = nom => {
   return "Bonjour arrow " + nom;
 };
 
 console.log(getBonjourArrow("le monde !"));
 
-var getBonjourArrowOptim = nom => "Bonjour arrow optim " + nom;
+const getBonjourArrowOptim = nom => "Bonjour arrow optim " + nom;
 
 console.log(getBonjourArrowOptim("le monde !"));
 
-var getBonjourArrowDefaultValue = (nom = "bel inconnu !") =>
+const getBonjourArrowDefaultValue = (nom = "bel inconnu !") =>
   "Bonjour arrow optim " + nom;
 
 console.log(getBonjourArrowDefaultValue());
