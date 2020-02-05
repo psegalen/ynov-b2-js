@@ -13,23 +13,29 @@ class Animal {
   }
 }
 
+// La classe "Chien" hérite de la classe "Animal"
 class Chien extends Animal {
   constructor(nom) {
+    // Appel du constructeur de la classe mère
     super(4, "Ouaf !");
     this.nom = nom;
   }
 
+  // Surcharge de la méthode de la classe mère
   crier() {
     console.log(`${this.nom} dit "${this.cri}"`);
   }
 }
 
+// La classe "Humain" hérite de la classe "Animal"
 class Humain extends Animal {
   constructor(nom) {
+    // Appel du constructeur de la classe mère
     super(2, "Aaaaaaaaaah !");
     this.nom = nom;
   }
 
+  // Surcharge de la méthode de la classe mère
   crier() {
     console.log(`${this.nom} dit "${this.cri}"`);
   }

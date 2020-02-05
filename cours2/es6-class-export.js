@@ -32,5 +32,4 @@ export class Humain extends Animal {
 }
 
 const mDurand = new Humain("M. Durand");
-
 export default mDurand;
