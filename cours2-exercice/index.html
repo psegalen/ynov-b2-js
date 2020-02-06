@@ -3,9 +3,11 @@
     <title>Film ou série ?</title>
     <link rel="stylesheet" type="text/css" href="index.css" />
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="index.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+    <script type="module" src="index.js"></script>
+    <meta charset="utf-8" />
   </head>
-  <body onload="chargerMedia()">
+  <body>
     <div class="racine">
       <div id="backdrop">
         <div class="media-infos">
@@ -43,12 +45,16 @@
         </div>
         <div id="serie">
           <div>Infos à propos de la série :</div>
-          <div id="saisons"><span id="nbSaisons">X</span> saison(s)</div>
+          <div id="saisons">
+            <span id="nbSaisons">X</span> saison<span id="saisonPluriel"
+              >s</span
+            >
+          </div>
           <ul id="detailsSaisons">
             <li>Saison X : X épisodes</li>
             <li>Saison X : X épisodes</li>
             <li>Saison X : X épisodes</li>
-          </div>
+          </ul>
         </div>
       </div>
     </div>
