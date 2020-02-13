@@ -121,3 +121,14 @@ input {
 .resultat-annee {
   color: #aaa;
 }
+
+#media-images {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+#media-images img {
+  margin: 16px;
+}
