@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>Film ou série ?</title>
+    <title>Recherche</title>
     <link rel="stylesheet" type="text/css" href="index.css" />
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
@@ -9,13 +9,13 @@
   </head>
   <body>
     <div class="racine" id="recherche">
-      <div>Recherche</div>
       <div>
-        <ul>
-          <li><a href="#movie/603">Matrix</a></li>
-          <li><a href="#movie/11">Star Wars IV</a></li>
-        </ul>
+        <form onsubmit="return false;">
+          Recherche <input type="text" id="motsRecherches" />
+          <button id="boutonRecherche">Chercher</button>
+        </form>
       </div>
+      <div id="resultats"></div>
     </div>
     <div class="racine" id="media" style="display: none;">
       <div id="backdrop">

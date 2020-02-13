@@ -1,4 +1,6 @@
 import chargerMedia from "./media.js";
+import Helpers from "./Helpers.js";
+import rechercher from "./recherche.js";
 
 const showPage = pageId => {
   const pages = document.getElementsByClassName("racine");
@@ -25,5 +27,10 @@ const selectPage = () => {
   }
 };
 
-window.addEventListener("load", selectPage);
+const init = () => {
+  selectPage();
+  Helpers.id("boutonRecherche").addEventListener("click", rechercher);
+};
+
+window.addEventListener("load", init);
 window.addEventListener("hashchange", selectPage);

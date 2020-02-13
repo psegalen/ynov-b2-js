@@ -8,6 +8,15 @@ a {
   color: #ddd;
 }
 
+input {
+  color: #ddd;
+  font-size: 1em;
+  padding: 0.5rem 1rem;
+  border-radius: 0.2rem;
+  background-color: #333;
+  border: 1px solid #ddd;
+}
+
 .racine {
   width: 70%;
   margin: auto;
@@ -74,4 +83,15 @@ a {
 #film,
 #serie {
   flex: 1;
+}
+
+#resultats {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  margin-top: 32px;
+}
+
+#resultats a {
+  margin: 16px;
+  background-color: #111;
 }
