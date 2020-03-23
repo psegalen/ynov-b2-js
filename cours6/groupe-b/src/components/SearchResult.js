@@ -24,7 +24,9 @@ const SearchResult = props => {
           <div className="resultat-type">
             {props.data.media_type === "movie" ? "Film" : "Série"}
           </div>
-          <div className="resultat-annee">{date.split("-")[0]}</div>
+          <div className="resultat-annee">
+            {date && date.split("-")[0]}
+          </div>
         </div>
       </div>
     </a>
