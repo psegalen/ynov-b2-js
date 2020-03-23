@@ -1,5 +1,6 @@
 import React from "react";
 import ApiHelper from "../helpers/ApiHelper";
+import SearchResult from "../components/SearchResult";
 
 export default class Search extends React.Component {
   constructor(props) {
@@ -12,9 +13,13 @@ export default class Search extends React.Component {
   }
 
   search() {
+    this.setState({ isLoading: true });
     ApiHelper.search(this.state.searchText)
       .then(response =>
-        this.setState({ results: response.data.results })
+        this.setState({
+          results: response.data.results,
+          isLoading: false
+        })
       )
       .catch(error => alert(error.message));
   }
@@ -22,16 +27,27 @@ export default class Search extends React.Component {
   render() {
     return (
       <div>
-        <span>Recherche</span>
-        <input
-          type="text"
-          style={{ marginLeft: "16px", marginRight: "16px" }}
-          value={this.state.searchText}
-          onChange={evt =>
-            this.setState({ searchText: evt.target.value })
-          }
-        />
-        <button onClick={() => this.search()}>Rechercher</button>
+        <div>
+          <span>Recherche</span>
+          <input
+            type="text"
+            style={{ marginLeft: "16px", marginRight: "16px" }}
+            value={this.state.searchText}
+            onChange={evt =>
+              this.setState({ searchText: evt.target.value })
+            }
+          />
+          <button onClick={() => this.search()}>Rechercher</button>
+        </div>
+        <div>
+          {this.state.isLoading
+            ? "Chargement ..."
+            : this.state.results.length === 0
+            ? "Pas de résultat !"
+            : this.state.results.map(result => (
+                <SearchResult data={result} />
+              ))}
+        </div>
       </div>
     );
   }
