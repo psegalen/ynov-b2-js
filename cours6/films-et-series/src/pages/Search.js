@@ -9,13 +9,19 @@ export default class Search extends React.Component {
     this.state = {
       isLoading: false,
       results: [],
-      searchText: ""
+      searchText: "",
+      nbResults: null
     };
   }
 
   search() {
     ApiHelper.search(this.state.searchText)
-      .then(response => this.setState({ results: response.data.results }))
+      .then(response =>
+        this.setState({
+          results: response.data.results,
+          nbResults: response.data.total_results
+        })
+      )
       .catch(error => alert(error.message));
   }
 
@@ -32,7 +38,9 @@ export default class Search extends React.Component {
           />
           <button onClick={() => this.search()}>Chercher</button>
         </div>
-        <div className="search-nb-results">? résultat(s)</div>
+        <div className="search-nb-results">
+          {this.state.nbResults || "?"} résultat(s)
+        </div>
         {this.state.isLoading ? (
           <div className="loading">Chargement ...</div>
         ) : (

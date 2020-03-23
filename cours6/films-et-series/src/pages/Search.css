@@ -6,3 +6,13 @@
 .search-nb-results {
   margin: 16px 0;
 }
+
+.resultats {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  margin-top: 32px;
+}
+
+.resultats a {
+  padding: 16px;
+}
