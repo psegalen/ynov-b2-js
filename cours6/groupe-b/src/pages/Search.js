@@ -1,6 +1,7 @@
 import React from "react";
 import ApiHelper from "../helpers/ApiHelper";
 import SearchResult from "../components/SearchResult";
+import "./Search.css";
 
 export default class Search extends React.Component {
   constructor(props) {
@@ -41,7 +42,7 @@ export default class Search extends React.Component {
           />
           <button onClick={() => this.search()}>Rechercher</button>
         </div>
-        <div>
+        <div className="resultats">
           {this.state.isLoading
             ? "Chargement ..."
             : this.state.results.length === 0 &&
