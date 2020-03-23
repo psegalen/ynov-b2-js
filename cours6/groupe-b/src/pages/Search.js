@@ -7,6 +7,7 @@ export default class Search extends React.Component {
     super(props);
     this.state = {
       isLoading: false,
+      oneSearchDone: false,
       results: [],
       searchText: ""
     };
@@ -18,7 +19,8 @@ export default class Search extends React.Component {
       .then(response =>
         this.setState({
           results: response.data.results,
-          isLoading: false
+          isLoading: false,
+          oneSearchDone: true
         })
       )
       .catch(error => alert(error.message));
@@ -42,7 +44,8 @@ export default class Search extends React.Component {
         <div>
           {this.state.isLoading
             ? "Chargement ..."
-            : this.state.results.length === 0
+            : this.state.results.length === 0 &&
+              this.state.oneSearchDone
             ? "Pas de résultat !"
             : this.state.results.map(result => (
                 <SearchResult data={result} />
