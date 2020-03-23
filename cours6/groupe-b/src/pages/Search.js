@@ -49,7 +49,10 @@ export default class Search extends React.Component {
               this.state.oneSearchDone
             ? "Pas de résultat !"
             : this.state.results.map(result => (
-                <SearchResult data={result} />
+                <SearchResult
+                  data={result}
+                  key={`${result.media_type}_${result.id}`}
+                />
               ))}
         </div>
       </div>

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./SearchResult.css";
 import MediaHelper from "../helpers/MediaHelper";
 
@@ -8,7 +9,11 @@ const SearchResult = props => {
       ? props.data.release_date
       : props.data.first_air_date;
   return (
-    <a>
+    <Link
+      to={`/${props.data.media_type === "movie" ? "film" : "serie"}/${
+        props.data.id
+      }`}
+    >
       <div className="resultat">
         <img
           className="resultat-poster"
@@ -29,7 +34,7 @@ const SearchResult = props => {
           </div>
         </div>
       </div>
-    </a>
+    </Link>
   );
 };
 
