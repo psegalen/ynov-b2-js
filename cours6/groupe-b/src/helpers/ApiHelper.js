@@ -6,6 +6,18 @@ const ApiHelper = {
   search: searchText => {
     const url = `https://api.themoviedb.org/3/search/multi?api_key=${apiKey}&language=fr-FR&query=${searchText}`;
     return axios.get(url);
+  },
+  getMedia: (type, id) => {
+    const url = `https://api.themoviedb.org/3/${type}/${id}?api_key=${apiKey}&language=fr-FR&region=fr-FR`;
+    return axios.get(url);
+  },
+  getPhotos: (type, id) => {
+    const imagesUrl = `https://api.themoviedb.org/3/${type}/${id}/images?api_key=${apiKey}`;
+    return axios.get(imagesUrl);
+  },
+  getSimilars: (type, id) => {
+    const similarUrl = `https://api.themoviedb.org/3/${type}/${id}/similar?api_key=${apiKey}&language=fr-FR`;
+    return axios.get(similarUrl);
   }
 };
 

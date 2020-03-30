@@ -3,3 +3,8 @@
   width: 80%;
   margin: auto;
 }
+
+.App a {
+  color: #fff;
+  text-decoration: none;
+}
