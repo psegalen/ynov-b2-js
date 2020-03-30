@@ -1,4 +1,5 @@
 import React from "react";
+import numeral from "numeral";
 import ApiHelper from "../helpers/ApiHelper";
 import MoviePanel from "./MoviePanel";
 import TvPanel from "./TvPanel";
@@ -42,7 +43,11 @@ class MediaInfos extends React.Component {
             >
               {this.props.media.vote_average}
             </span>{" "}
-            (<span>{this.props.media.vote_count}</span> votes)
+            (
+            <span>
+              {numeral(this.props.media.vote_count).format("0,0 a")}
+            </span>{" "}
+            votes)
           </div>
           <div>
             Médias similaires :
@@ -64,7 +69,11 @@ class MediaInfos extends React.Component {
           </div>
         </div>
         <div id={this.props.type}>
-          {this.props.type === "movie" ? <MoviePanel /> : <TvPanel />}
+          {this.props.type === "movie" ? (
+            <MoviePanel media={this.props.media} />
+          ) : (
+            <TvPanel media={this.props.media} />
+          )}
         </div>
       </div>
     );

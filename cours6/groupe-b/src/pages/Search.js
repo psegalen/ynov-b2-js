@@ -1,22 +1,40 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 import ApiHelper from "../helpers/ApiHelper";
 import SearchResult from "../components/SearchResult";
 import "./Search.css";
 
-export default class Search extends React.Component {
+class Search extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       isLoading: false,
       oneSearchDone: false,
       results: [],
-      searchText: ""
+      searchText: "",
+      previousQuery: ""
     };
   }
 
-  search() {
+  componentDidMount() {
+    const { query } = this.props.match.params;
+    if (query) {
+      this.setState({ searchText: query, previousQuery: query });
+      this.doSearchRequest(query);
+    }
+  }
+
+  componentDidUpdate() {
+    const { query } = this.props.match.params;
+    if (query && query !== this.state.previousQuery) {
+      this.setState({ searchText: query, previousQuery: query });
+      this.doSearchRequest(query);
+    }
+  }
+
+  doSearchRequest(query) {
     this.setState({ isLoading: true });
-    ApiHelper.search(this.state.searchText)
+    ApiHelper.search(query)
       .then(response =>
         this.setState({
           results: response.data.results,
@@ -25,6 +43,10 @@ export default class Search extends React.Component {
         })
       )
       .catch(error => alert(error.message));
+  }
+
+  search() {
+    this.props.history.push(`/search/${this.state.searchText}`);
   }
 
   render() {
@@ -59,3 +81,5 @@ export default class Search extends React.Component {
     );
   }
 }
+
+export default withRouter(Search);
