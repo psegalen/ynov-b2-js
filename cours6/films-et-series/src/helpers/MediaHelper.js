@@ -7,7 +7,7 @@ const MediaHelper = {
     suffix
       ? `https://image.tmdb.org/t/p/w154${suffix}`
       : "https://www.flixdetective.com/web/images/poster-placeholder.png",
-  imageUrl: suffix => `https://image.tmdb.org/t/p/w300${suffix}`
+  imageUrl: suffix => `https://image.tmdb.org/t/p/w400${suffix}`
 };
 
 export default MediaHelper;

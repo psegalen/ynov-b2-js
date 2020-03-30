@@ -4,4 +4,15 @@
   padding: 32px;
   box-sizing: border-box;
   color: #fff;
+  display: flex;
+  justify-content: center;
+}
+
+.racine {
+  width: 70%;
+}
+
+.App a {
+  color: #fff;
+  text-decoration: none;
 }

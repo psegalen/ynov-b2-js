@@ -20,6 +20,11 @@ const SearchResult = props => {
           className="resultat-poster"
           style={{ height: "200px" }}
           src={MediaHelper.posterUrl(props.data.poster_path)}
+          alt={
+            props.data.media_type === "movie"
+              ? props.data.title
+              : props.data.name
+          }
         />
         <div className="resultat-infos">
           <div className="resultat-titre">
