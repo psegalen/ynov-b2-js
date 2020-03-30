@@ -29,7 +29,20 @@ class MediaInfos extends React.Component {
         <div className="communes">
           <div>Synopsis : {this.props.media.overview}</div>
           <div>
-            Note : <span>Moyenne</span> (<span>Nb</span> votes)
+            Note :{" "}
+            <span
+              style={{
+                color:
+                  this.props.media.vote_average >= 7
+                    ? "rgb(0, 255, 0)"
+                    : this.props.media.vote_average < 5
+                    ? "rgb(255, 0, 0)"
+                    : undefined
+              }}
+            >
+              {this.props.media.vote_average}
+            </span>{" "}
+            (<span>{this.props.media.vote_count}</span> votes)
           </div>
           <div>
             Médias similaires :

@@ -34,9 +34,13 @@ class Media extends React.Component {
     const { id } = this.props.match.params;
     this.setState({ currentMediaId: id, isLoading: true });
     ApiHelper.getMedia(this.props.type, id)
-      .then(response =>
-        this.setState({ media: response.data, isLoading: false })
-      )
+      .then(response => {
+        document.title =
+          this.props.type === "movie"
+            ? `Film : ${response.data.title}`
+            : `Série : ${response.data.name}`;
+        this.setState({ media: response.data, isLoading: false });
+      })
       .catch(error => {
         this.setState({ isLoading: false });
         console.error(error);
