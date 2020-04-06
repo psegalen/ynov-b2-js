@@ -1,0 +1,14 @@
+.App {
+  padding: 32px;
+  width: 80%;
+  margin: auto;
+}
+
+.App a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.App a:hover {
+  background-color: #555;
+}
