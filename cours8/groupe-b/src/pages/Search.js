@@ -16,6 +16,7 @@ const Search = () => {
     if (query) {
       setIsLoading(true);
       setSearchText(query);
+      document.title = `Recherche : ${query}`;
       ApiHelper.search(query)
         .then((response) => {
           setIsLoading(false);
