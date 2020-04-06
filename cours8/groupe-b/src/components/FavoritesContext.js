@@ -6,10 +6,21 @@ export const FavoritesContext = createContext({
 });
 
 export const FavoritesProvider = (props) => {
-  const [favs, setFavs] = useState([]);
+  const initialFavs = localStorage.getItem("favs")
+    ? JSON.parse(localStorage.getItem("favs"))
+    : [];
+
+  const [favs, setFavs] = useState(initialFavs);
+
+  const finalSetFavs = (newFavs) => {
+    localStorage.setItem("favs", JSON.stringify(newFavs));
+    setFavs(newFavs);
+  };
 
   return (
-    <FavoritesContext.Provider value={{ favs, setFavs }}>
+    <FavoritesContext.Provider
+      value={{ favs, setFavs: finalSetFavs }}
+    >
       {props.children}
     </FavoritesContext.Provider>
   );
