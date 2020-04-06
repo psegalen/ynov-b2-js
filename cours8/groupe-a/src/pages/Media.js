@@ -12,16 +12,20 @@ const Media = (props) => {
   const [photos, setPhotos] = useState([]);
 
   useEffect(() => {
-    ApiHelper.getMedia(props.type, props.match.params.id).then(
-      (response) => {
+    setIsLoading(true);
+    ApiHelper.getMedia(props.type, props.match.params.id)
+      .then((response) => {
         document.title =
           props.type === "movie"
             ? `Film : ${response.data.title}`
             : `Série : ${response.data.name}`;
         setMedia(response.data);
         setIsLoading(false);
-      }
-    );
+      })
+      .catch((error) => {
+        console.error(error);
+        setIsLoading(false);
+      });
     ApiHelper.getPhotos(props.type, props.match.params.id).then(
       (response) => {
         setPhotos(
