@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import ApiHelper from "../helpers/ApiHelper";
 import SearchResult from "../components/SearchResult";
 import "./Search.css";
@@ -38,6 +38,9 @@ const Search = (props) => {
           onChange={(evt) => setSearchText(evt.target.value)}
         />
         <button onClick={search}>Rechercher</button>
+        <Link to="/favorites" style={{ marginLeft: "32px" }}>
+          Favoris
+        </Link>
       </div>
       <div className="resultats">
         {isLoading

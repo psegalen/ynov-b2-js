@@ -9,8 +9,23 @@ const MediaHeader = (props) => {
   const mediaKey = `${props.type}_${props.media.id}`;
 
   const toggleFav = () => {
-    const favIndex = favs.indexOf(mediaKey);
-    if (favIndex === -1) setFavs([...favs, mediaKey]);
+    const favIndex = favs.findIndex(
+      (media) => media.mediaKey === mediaKey
+    );
+    if (favIndex === -1)
+      setFavs([
+        ...favs,
+        {
+          id: props.media.id,
+          name: props.media.name,
+          title: props.media.title,
+          media_type: props.type,
+          poster_path: props.media.poster_path,
+          release_date: props.media.release_date,
+          first_air_date: props.media.first_air_date,
+          mediaKey,
+        },
+      ]);
     else
       setFavs(
         favs.slice(0, favIndex).concat(favs.slice(favIndex + 1))
@@ -58,7 +73,10 @@ const MediaHeader = (props) => {
           icon={faStar}
           size="2x"
           color={
-            favs.indexOf(mediaKey) === -1 ? "black" : "goldenrod"
+            favs.findIndex((media) => media.mediaKey === mediaKey) ===
+            -1
+              ? "black"
+              : "goldenrod"
           }
         />
       </span>

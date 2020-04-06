@@ -43,7 +43,11 @@ const SearchResult = (props) => {
             {date && date.split("-")[0]}
           </div>
           <div className="resultat-fav">
-            {favs.indexOf(mediaKey) === -1 ? "" : "Favori !"}
+            {favs.findIndex(
+              (media) => media.mediaKey === mediaKey
+            ) === -1
+              ? ""
+              : "Favori !"}
           </div>
         </div>
       </div>
