@@ -1,85 +1,61 @@
-import React from "react";
-import { withRouter } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { withRouter, useParams, useHistory } from "react-router-dom";
 import ApiHelper from "../helpers/ApiHelper";
 import SearchResult from "../components/SearchResult";
 import "./Search.css";
 
-class Search extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isLoading: false,
-      oneSearchDone: false,
-      results: [],
-      searchText: "",
-      previousQuery: ""
-    };
-  }
+const Search = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [results, setResults] = useState([]);
+  const [searchText, setSearchText] = useState("");
 
-  componentDidMount() {
-    const { query } = this.props.match.params;
+  const { query } = useParams();
+  const history = useHistory();
+
+  useEffect(() => {
     if (query) {
-      this.setState({ searchText: query, previousQuery: query });
-      this.doSearchRequest(query);
-    }
-  }
-
-  componentDidUpdate() {
-    const { query } = this.props.match.params;
-    if (query && query !== this.state.previousQuery) {
-      this.setState({ searchText: query, previousQuery: query });
-      this.doSearchRequest(query);
-    }
-  }
-
-  doSearchRequest(query) {
-    this.setState({ isLoading: true });
-    ApiHelper.search(query)
-      .then(response =>
-        this.setState({
-          results: response.data.results,
-          isLoading: false,
-          oneSearchDone: true
+      setIsLoading(true);
+      setSearchText(query);
+      ApiHelper.search(query)
+        .then((response) => {
+          setIsLoading(false);
+          setResults(response.data.results);
         })
-      )
-      .catch(error => alert(error.message));
-  }
+        .catch((error) => alert(error.message));
+    } else {
+      setSearchText("");
+      setResults([]);
+    }
+  }, [query]);
 
-  search() {
-    this.props.history.push(`/search/${this.state.searchText}`);
-  }
+  const search = () => history.push(`/search/${searchText}`);
 
-  render() {
-    return (
+  return (
+    <div>
       <div>
-        <div>
-          <span>Recherche</span>
-          <input
-            type="text"
-            style={{ marginLeft: "16px", marginRight: "16px" }}
-            value={this.state.searchText}
-            onChange={evt =>
-              this.setState({ searchText: evt.target.value })
-            }
-          />
-          <button onClick={() => this.search()}>Rechercher</button>
-        </div>
-        <div className="resultats">
-          {this.state.isLoading
-            ? "Chargement ..."
-            : this.state.results.length === 0 &&
-              this.state.oneSearchDone
-            ? "Pas de résultat !"
-            : this.state.results.map(result => (
-                <SearchResult
-                  data={result}
-                  key={`${result.media_type}_${result.id}`}
-                />
-              ))}
-        </div>
+        <span>Recherche</span>
+        <input
+          type="text"
+          style={{ marginLeft: "16px", marginRight: "16px" }}
+          value={searchText}
+          onChange={(evt) => setSearchText(evt.target.value)}
+        />
+        <button onClick={search}>Rechercher</button>
       </div>
-    );
-  }
-}
+      <div className="resultats">
+        {isLoading
+          ? "Chargement ..."
+          : results.length === 0 && query
+          ? "Pas de résultat !"
+          : results.map((result) => (
+              <SearchResult
+                data={result}
+                key={`${result.media_type}_${result.id}`}
+              />
+            ))}
+      </div>
+    </div>
+  );
+};
 
 export default withRouter(Search);
