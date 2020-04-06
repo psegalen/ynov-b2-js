@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { FavoritesContext } from "./FavoritesContext";
 import "./SearchResult.css";
 import MediaHelper from "../helpers/MediaHelper";
 
-const SearchResult = props => {
+const SearchResult = (props) => {
+  const { favs } = useContext(FavoritesContext);
+  const mediaKey = `${props.data.media_type}_${props.data.id}`;
+
   const date =
     props.data.media_type === "movie"
       ? props.data.release_date
       : props.data.first_air_date;
+
   return (
     <Link
       to={`/${props.data.media_type === "movie" ? "film" : "serie"}/${
@@ -36,6 +41,9 @@ const SearchResult = props => {
           </div>
           <div className="resultat-annee">
             {date && date.split("-")[0]}
+          </div>
+          <div className="resultat-fav">
+            {favs.indexOf(mediaKey) === -1 ? "" : "Favori !"}
           </div>
         </div>
       </div>
