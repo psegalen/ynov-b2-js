@@ -9,6 +9,7 @@ import "./App.css";
 import Search from "./pages/Search";
 import Media from "./pages/Media";
 import { FavoritesProvider } from "./components/FavoritesContext";
+import Favorites from "./pages/Favorites";
 
 // load a locale
 numeral.register("locale", "fr", {
@@ -39,6 +40,9 @@ function App() {
       <div className="App">
         <Router>
           <Switch>
+            <Route path="/favorites">
+              <Favorites />
+            </Route>
             <Route path="/serie/:id">
               <Media type="tv" />
             </Route>

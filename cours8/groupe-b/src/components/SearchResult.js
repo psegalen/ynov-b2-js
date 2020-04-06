@@ -9,7 +9,10 @@ import { FavoritesContext } from "./FavoritesContext";
 const SearchResult = (props) => {
   const { favs } = useContext(FavoritesContext);
   const isFav =
-    favs.indexOf(`${props.data.media_type}_${props.data.id}`) !== -1;
+    favs.findIndex(
+      (fav) =>
+        fav.mediaKey === `${props.data.media_type}_${props.data.id}`
+    ) !== -1;
 
   const date =
     props.data.media_type === "movie"
