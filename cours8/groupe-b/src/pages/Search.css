@@ -1,0 +1,9 @@
+.resultats {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  margin-top: 32px;
+}
+
+.resultats a {
+  padding: 16px;
+}
